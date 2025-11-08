@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h2(style="text-align:center; font-size:28px; margin-bottom:25px; color:#374151;") Inscription
+  if message
+    p(style="color:red; text-align:center; margin-bottom:15px;")= message
+  form(action="/register" method="POST" style="max-width:400px; margin:auto; display:flex; flex-direction:column; gap:15px;")
+    input(type="text" name="username" placeholder="Nom d'utilisateur" required 
+          style="padding:12px; border-radius:8px; border:1px solid #adc223ff; font-size:16px;")
+    input(type="password" name="password" placeholder="Mot de passe" required 
+          style="padding:12px; border-radius:8px; border:1px solid #d1d5db; font-size:16px;")
+    button(type="submit" style="padding:12px; border:none; border-radius:8px; background-color:#4f46e5; color:white; font-size:16px; cursor:pointer; transition: background 0.3s;")
+      | S'inscrire
+  p(style="text-align:center; margin-top:15px; color:#6b7280; font-size:14px;")
+    | Vous avez déjà un compte? 
+    a(href="/login" style="color:#4f46e5; text-decoration:none; margin-left:5px;") Connectez-vous

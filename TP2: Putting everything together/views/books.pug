@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  h1(style="text-align:center; font-size:28px; margin-bottom:30px;") Mes Livres
+
+  // Formulaire pour ajouter un livre
+  form(action="/books/add" method="POST")
+    input.form-input(type="text" name="title" placeholder="Titre du livre" required)
+    input.form-input(type="text" name="author" placeholder="Auteur")
+    input.form-input(type="number" name="pages" placeholder="Nombre de pages" required min="1")
+    input.form-input(type="number" name="pagesRead" placeholder="Pages lues" min="0")
+    select.form-input(name="status")
+      option(value="Read") Read
+      option(value="Re-read") Re-read
+      option(value="DNF") DNF
+      option(value="Currently reading") Currently reading
+      option(value="Returned Unread") Returned Unread
+      option(value="Want to read") Want to read
+    input.form-input(type="number" name="price" placeholder="Prix" step="0.01")
+    select.form-input(name="format")
+      option(value="Print") Print
+      option(value="PDF") PDF
+      option(value="Ebook") Ebook
+      option(value="AudioBook") AudioBook
+    input.form-input(type="text" name="suggestedBy" placeholder="Suggéré par")
+    div(style="margin-bottom:15px;")
+      label
+        input(type="checkbox" name="finished")
+        | Terminé
+    button.btn(type="submit") Ajouter le livre
+
+  // Tableau des livres
+  table
+    thead
+      tr
+        th Titre
+        th Auteur
+        th Pages
+        th Pages lues
+        th Statut
+        th Prix
+        th Format
+        th Suggéré par
+        th Terminé
+        th Actions
+    tbody
+      each book in books
+        tr
+          td #{book.title}
+          td #{book.author}
+          td #{book.pages}
+          td #{book.pagesRead}
+          td #{book.status}
+          td #{book.price} €
+          td #{book.format}
+          td #{book.suggestedBy}
+          td #{book.finished ? 'Oui' : 'Non'}
+          td
+            button.btn(onclick=`deleteBook('${book._id}')`) Supprimer
+
+  script.
+    async function deleteBook(id) {
+      if(confirm('Voulez-vous vraiment supprimer ce livre ?')) {
+        await fetch('/books/' + id, { method: 'DELETE' });
+        location.reload();
+      }
+    }

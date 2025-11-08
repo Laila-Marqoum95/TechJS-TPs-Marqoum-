@@ -1,0 +1,78 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Book Tracker
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: linear-gradient(to right, #3b82f6, #6366f1);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      main {
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: auto;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f3f4f6;
+        color: #4b5563;
+      }
+      .btn {
+        background-color: #4f46e5;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background-color: #838d1eff;
+      }
+      .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+      }
+      tr:nth-child(even) {
+        background-color: #f3f4f6;
+      }
+  body
+    header
+      h1 Book Tracker
+      if user
+        div
+          span Bonjour, #{user.username}
+          a(href="/logout" style="margin-left:15px; text-decoration:none; color:white; background:#2563eb; padding:5px 10px; border-radius:5px;") Logout
+    main
+      block content
+    footer
+      | &copy; #{new Date().getFullYear()} Book Tracker. Tous droits réservés. Créé par Marqoum Laila

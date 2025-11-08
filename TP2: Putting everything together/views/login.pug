@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h2(style="text-align:center; font-size:24px; margin-bottom:20px") Connexion
+  if message
+    p(style="color:red; text-align:center")= message
+  form(action="/login" method="POST")
+    input.form-input(type="text" name="username" placeholder="Nom d'utilisateur" required)
+    input.form-input(type="password" name="password" placeholder="Mot de passe" required)
+    button.btn(type="submit") Se connecter
+  p(style="text-align:center; margin-top:10px")
+    | Pas encore de compte? 
+    a(href="/register") S'inscrire
